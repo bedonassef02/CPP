@@ -1,0 +1,155 @@
+#include <iostream>
+using namespace std;
+
+typedef int dataEntry;
+
+class Array {
+private : 
+	int size;
+	int length;
+	int* items;
+public :
+	Array(int arrSize) {
+		size = arrSize;
+		length = 0;
+		items = new dataEntry[size];
+	}
+
+	void fill(int start,int end, dataEntry value) {
+		for (int i = start; i <= end; i++) {
+			items[i] = value;
+		}
+	}
+	void fill(dataEntry value) {
+		for (int i = 0; i < size; i++) {
+			items[i] = value;
+		}
+	}
+
+	void print() {
+		for (int i = 0; i < length; i++) {
+			cout << items[i] << "\t";
+		}cout << endl;
+	}
+
+	void add(dataEntry item) {
+		items[length++] = item;
+	}
+
+	int getSize() {
+		return size;
+	}
+
+	int getLength() {
+		return length;
+	}
+
+	bool search(dataEntry item) {
+		for (int i = 0; i < length; i++) {
+			if (items[i] == item)
+				return true;
+		}
+		return false;
+	}
+
+	int getIndex(dataEntry item) {
+		for (int i = 0; i < length; i++) {
+			if (items[i] == item)
+				return i;
+		}
+		return -1;
+	}
+
+	int count(dataEntry item) {
+		int c = 0;
+		for (int i = 0; i < length; i++) {
+			if (items[i] == item)
+				c++;
+		}
+		return c;
+	}
+
+	dataEntry pop() {
+		return items[--length];
+	}
+
+	void insert(int index, dataEntry item) {
+		for (int i = length++; i > index; i--) {
+			items[i] = items[i - 1];
+		}
+		items[index] = item;
+	}
+
+	void toString() {
+		cout << "{Array Size : " << size << ", Array Length : " << length << "}\n";
+		cout << "Array :";
+		print();
+	}
+
+	void replace(dataEntry old, dataEntry now) {
+		for (int i = 0; i < length; i++) {
+			if (items[i] == old)
+				items[i] = now;
+		}
+	}
+
+	void replaceFirst(dataEntry old, dataEntry now) {
+		for (int i = 0; i < length; i++) {
+			if (items[i] == old) {
+				items[i] = now;
+				return;
+			}
+		}
+	}
+
+	void remove(int index) {
+		if (index >= length)return;
+		for (int i = index; i < length; i++) {
+			items[i] = items[i + 1];
+		}
+		length--;
+	}
+
+	void enLarge(int newSize) {
+		dataEntry* newArr = new dataEntry[newSize];
+		for (int i = 0; i < length; i++) {
+			newArr[i] = items[i];
+		}
+		size = newSize;
+		delete[]items;
+		items = newArr;
+	}
+
+	void merge(Array arr) {
+		dataEntry* newArr;
+		int newSize = arr.getSize() + size;
+		newArr = new dataEntry[size = newSize];
+		for (int i = 0; i < length; i++) {
+			newArr[i] = items[i];
+		}
+		
+		for (int i = 0; i < arr.length; i++) {
+			newArr[length++] = arr.items[i];
+		}
+		delete[]items;
+		items = newArr;
+	}
+
+};
+
+int main()
+{int n = 10;
+	Array arr(n);
+	for (int i = 0; i < n-5; i++) {
+		arr.add(i + 1);
+	}	
+	Array arr1(n);
+	for (int i = 0; i < n ; i++) {
+		arr1.add(i + 1);
+	}
+	
+	arr.merge(arr1);
+	//cout << arr.getSize();
+
+	arr.print();
+}

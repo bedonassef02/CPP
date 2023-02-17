@@ -1,0 +1,78 @@
+    forward_list<int> fl = {1,2,3};    // forward_front() only
+    fl.assign(4,7);
+    fl.push_front(0);
+    fl.pop_front();
+    fl.emplace_front(4);    // best than push front
+    f1.insert_after(fl.begin(),10);
+    
+    for (int &i : fl){
+        cout << i << " ";
+    }
+
+===================================
+
+    fl.insert_after(fl.begin(),5);  // push in index 2
+    fl.insert_after(fl.before_begin(),15);  // push in 1st index
+
+    fl.insert_after(fl.before_begin(),{0,8,16,24}); // insert array
+
+    auto it = fl.before_begin();
+
+    fl.emplace_after(it,5);        // 1st idx
+
+===================================
+
+    forward_list<int> fl = {1,2,3,8,4,6,9,7,5,5,4,5};
+
+    auto f = next(fl.before_begin());
+    cout << *f <<endl;
+
+
+    f = next(fl.before_begin(),2); // move 2 steps
+    cout << *f <<endl;
+
+    fl.erase_after(fl.begin()); // remove idx 2
+
+    auto it = fl.before_begin();
+    it = next(it,3);    // itertor in idx 2
+    fl.erase_after(it);     // remove idx 2
+
+    fl.remove(5);
+    fl.unique();
+    
+===================================
+bool Delete_Five(int n){
+    return n == 5;
+}
+
+   fl.remove_if(Delete_Five);
+
+===================================
+
+    forward_list<int> f1 = {1,2,3,8,4,6,9,7,5,5,4,5};
+    forward_list<int> f2 = {1,2,3,8,4,6,9,7,5,5,4,5};
+
+    f1.splice_after(f1.before_begin(),f2);
+    
+    f1.splice_after(f1.before_begin(),f2,f2.before_begin());
+    
+    f1.splice_after(f1.before_begin(),f2,f2.before_begin(),f2.end());
+
+===================================
+
+    forward_list<int> f1 = {1,2,3,8,4,6,9,7,5,5,4,5};
+    forward_list<int> f2 = {1,2,3,8,4,6,9,7,5,5,4,5};
+
+
+    f1.resize(5);
+    f1.merge(f2);   // f2 empty
+
+    f1.sort(greater<int>());
+    
+    f1.reverse();
+    
+    f1.unique();
+    
+    f1.swap(f2);
+    
+    f1.clear();

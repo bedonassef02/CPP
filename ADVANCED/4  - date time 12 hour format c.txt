@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main()
+{
+
+    time_t now = time(NULL);
+    struct tm* dt = localtime(&now);
+    int h24 = dt->tm_hour;
+    int h12 = h24 % 12;
+    int min = dt->tm_min;
+    int sec = dt->tm_sec;
+    char *a;
+    if (h24 >= 12){
+        a = "PM";
+    }else{
+        a = "AM";
+    }
+    printf("%.2d:%.2d:%.2d %s\n",h12,min,sec,a);
+    return 0;
+}

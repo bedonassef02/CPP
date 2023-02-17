@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+typedef int dataEntry;
+
+class Node {
+public:
+	dataEntry item;
+	Node* next;
+};
+
+class Stack {
+private :
+	int size = 0;
+	Node* head = NULL;
+public :
+
+	void push(dataEntry item) {
+		Node* cur = new Node;
+		cur->item = item;
+		if (!head) {
+			head = cur;
+			cur->next = NULL;
+		}
+		else {
+			cur->next = head;
+			head = cur;
+		}
+		size++;
+	}
+
+	dataEntry pop() {
+		Node* cur = head;
+		head = head->next;
+		dataEntry item = cur->item;
+		free(cur);
+		size--;
+		return item;
+	}
+
+	bool isEmpty() {
+		return !head;
+	}
+
+	dataEntry peek() {
+		return head->item;
+	}
+
+	void print() {
+		Node* cur = head;
+		while (cur) {
+			cout << cur->item << "\t";
+			cur = cur->next;
+		}
+	}
+};
+
+int main()
+{
+	Stack stack;
+	stack.push(5);
+	stack.push(10);
+	stack.push(15);
+	stack.pop();
+	stack.push(10);
+	stack.push(15);
+
+	cout << stack.pop() << endl;
+	stack.print();
+}

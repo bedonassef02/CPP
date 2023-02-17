@@ -1,0 +1,73 @@
+    deque<char> d {'b','e','c','o'};
+
+    d.push_back('l');
+    d.push_front('f');
+
+
+    //deque<char>::iterator it = d.begin();
+    auto it = d.begin();    // اختصار
+    // iterator more fast than loop
+    for (; it != d.end();it++){
+        cout << *it << "\t";
+    }
+
+    cout <<endl;
+
+    auto i = d.rbegin();    // print reverse
+    for (; i != d.rend();i++){
+        cout << *i << "\t";
+    }
+
+==========================================
+
+    deque<char> d {'b','e','d','o'};
+
+    d.pop_back();
+    d.pop_front();
+
+    d.erase(d.begin(),d.end()); // empty deque
+
+    d.insert(d.begin(),'p');
+
+    auto it = d.begin();
+    for (;it!=d.end();it++)
+        cout << *it << "\t";
+
+==========================================
+
+    deque<char> d {'e','d','o'};
+
+   d.insert(d.begin(),5,'b');	// first  chars will be < b >
+
+==========================================
+
+     deque<char> d {'e','d','o'};
+    auto it = d.end();
+    d.emplace(it,'p');  // emplace is faster than insert
+    // if u pass iterator function will work fast
+
+==========================================
+
+    deque<char> d1 {'a','b','c'};
+    deque<char> d2 {'e','d','o'};
+
+    d1.swap(d2);
+    auto it = d1.begin();
+
+==========================================
+
+    deque <int> d1 = {0,5,9};
+
+    sort(d1.rbegin(),d1.rend());     // reverse sort
+
+==========================================
+
+    cout << d1.max_size()<<endl;
+    d1.clear();
+    cout << d1.empty();
+
+==========================================
+
+    d1.resize(8);
+    d1[3] = 5;
+    d1.shrink_to_fit(); // same size u use not more

@@ -1,0 +1,38 @@
+#include <utility>
+===================================
+
+    //pair<int,string> p = {1536,"Bedo"};
+    pair<int,string> p = make_pair(1536,"bedo");
+    
+    cout << p.first <<endl;
+    cout << p.second<<endl;
+
+===================================
+
+    pair<string,pair<int,double>> NAS;
+
+    NAS.first = "bedo";
+    NAS.second.first = 19;
+    NAS.second.second = 1000;
+
+    cout << NAS.first << " " << NAS.second.first << " "<< NAS.second.second << endl;
+
+====================================
+
+
+    vector<pair<int,string>> vp;
+    vp.push_back(make_pair(5,"BBB"));
+    vp.push_back({7,"CCC"});
+    vp.push_back(pair<int,string>(1,"AAA"));
+
+    sort(vp.begin(),vp.end());
+
+    cout << vp[0].first << " "<< vp[0].second << endl;
+
+
+    auto it = vp.begin();
+
+    for(;it!=vp.end();it++){
+        cout << it->first << " " << it->second << endl;
+    }
+    

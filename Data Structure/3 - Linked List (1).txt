@@ -1,0 +1,96 @@
+#include <iostream>
+using namespace std;
+
+typedef int dataEntry;
+
+class Node {
+public : 
+	dataEntry value;
+	Node* next;
+};
+
+class LinkedList {
+private :
+	int size;
+	Node* head;
+public :
+	LinkedList() {
+		head = NULL;
+		size = 0;
+	}
+
+	void add(int index, dataEntry val) {
+		Node* ptr = new Node;
+		ptr->value = val;
+		if (!head) {
+			ptr->next = NULL;
+			head = ptr;
+		}
+		else if (!index) {
+			Node* n = head;
+			ptr->next = head;
+			head = ptr;
+		}
+		else {
+			Node* cur = head;
+			for (int i = 0; i < index; i++) {
+				cur = cur->next;
+			}
+			ptr->next = cur->next;
+			cur->next = ptr;
+		}
+		size++;
+	}
+
+	bool isEmpty() {
+		return !head;
+	}
+
+
+	void print() {
+		Node* cur = head;
+		while (cur != NULL) {
+			cout << cur->value << "\t";
+			cur = cur->next;
+		}cout << endl;
+	}
+
+	int getSize() {
+		return size;
+	}
+
+	int listSize() {
+		int n = 0;
+		Node* cur = head;
+		while (cur) {
+			n++;
+			cur = cur->next;
+		}
+		return n;
+	}
+
+	bool search(dataEntry val) {
+		Node* cur = head;
+		while (cur) {
+			if (cur->value == val)return true;
+			cur = cur->next;
+		}
+		return false;
+	}
+
+};
+
+
+int main()
+{
+	int n = 10;
+	LinkedList list ;
+	list.add(0,5);
+	list.add(0, 10);
+	list.add(1, 15);
+	list.add(2, 20);
+	list.add(2, 25);
+	list.add(4, 30);
+	list.print();
+	cout << list.search(0);
+}

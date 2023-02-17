@@ -1,0 +1,99 @@
+    list <int> l = {1,8,6,4,45,315,46,15,12,3,45,4,6};
+    l.push_back(11);
+    list<int>::iterator it = l.begin();
+
+
+    list<int>::reverse_iterator it2 = l.rbegin();
+    cout <<endl;
+    for (;it2!=l.rend();it2++){
+        cout << *it2 <<"\t";
+    }
+
+
+    l.insert(l.begin(),55);
+
+    cout <<"\n"<<l.front()<<endl;
+
+    l.remove(4); // remove all 2 in list
+
+    l.erase(l.begin()); // remove 1st element
+
+
+    auto it4 = l.begin();
+
+    it4++;
+
+    l.erase(it4,l.end());
+
+    l.insert(l.begin(),3,15);
+
+==============================================
+
+    list <int> l ;
+
+    l.assign(10,2); // 10st values will be 2
+    l.resize(5);
+    cout << l.empty()<<endl;
+
+    auto it = l.begin();
+    for (;it!=l.end();it++){
+        cout << *it <<"\t";
+    }
+    l.clear();
+
+==============================================
+
+    list <int> l1 ={1,2,3};
+    list <int> l2={4,5,6};
+
+    l1.merge(l2);   // sort & merge (format l2);
+
+
+    l1.splice(l1.begin(),l2);   // put list 2 in fisrt in list 1 NOT SORT (format l2);
+
+    l.unique(); // delete if 3 3 will delete only
+
+==============================================
+
+bool evenNumber(int n){
+    return n % 2 == 0;
+}
+
+int main()
+{
+    list <int> l ={1,2,3,4,5,1,2,3,4,5};
+
+    l.remove_if(evenNumber);    // remove even numbers
+
+    auto it = l.begin();
+    for (;it!=l.end();it++){
+        cout << *it <<"\t";
+    }
+    return 0;
+}
+
+==============================================
+
+    list <int> l ={11,78,54,6,45,12,45,3};
+
+    l.sort();   // sort list
+    l.sort(greater<int>()); // sort desc order
+    l.reverse();    // reverse list
+
+==============================================
+
+    list <int> l ={11,78,54,6,45,12,45,3};
+
+    auto it = l.begin();
+    *it = 1000;
+
+    for (l.begin();it!=l.end();it++){
+        cout << *it <<"\t";
+    }
+
+==============================================
+
+
+
+
+

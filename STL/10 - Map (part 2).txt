@@ -1,0 +1,91 @@
+    map<string,int> GradeByName;
+    GradeByName.insert({"Bedo",96});
+    GradeByName.insert({"Ali",87});
+    GradeByName.insert({"Ezat",99});
+
+    string s;
+    cin >> s;
+    bool isExist = false;
+    for(auto it = GradeByName.begin();it!=GradeByName.end();it++){
+        if (it->first == s){
+            cout << it->second;
+            isExist = true;
+        }
+    }
+    if (!isExist){
+        cout << "Student name not found";
+    }
+
+========================================
+    int arr[] = {3,3,1,2,2,3,1,5};
+    
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+    sort(arr,arr+n);
+    int c = 1;
+    for (int i=0;i<n;i++){
+        if (arr[i] == arr[i+1])
+            c++;
+        else{
+            cout << arr[i
+            ] << " => " << c << endl;
+             c = 1;
+        }
+    }
+========================================
+    IF U INMPLEMENT THE ARRAY GLOBAL
+       ALL ELEMENTS WILL BE ZERO
+========================================
+
+    cout << "Enter Size Elements : ";
+
+    int s;
+    cin >> s;
+
+    for (int i=0;i<s;i++){
+        int n;
+        cin >> n;
+        m[n]++;
+    }
+
+    auto it = m.begin();
+
+    for (;it != m.end();it++){
+            cout << it->first<< " => " << it->second << endl;
+    }
+
+========================================
+
+    map<int,string,greater<int>>mp;
+
+    mp[1] = "one";
+    mp[2] = "two";
+    mp[3] = "three";
+
+    for (auto m : mp){
+        cout << m.first << "\t-\t" << m.second << endl;
+    }
+
+========================================
+
+
+template<typename type>
+
+struct com{
+    bool operator()(const type & first,const type & second)const{
+        return first > second;
+    }
+};
+
+int main()
+{
+
+    map<int,string,com<int>>mp;
+    mp[1] = "one";
+    mp[2] = "two";
+    mp[3] = "three";
+
+    for(auto m:mp){
+        cout << m.first << "\t" << m.second << endl;
+    }
+

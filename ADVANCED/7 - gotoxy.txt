@@ -1,0 +1,15 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+void gotoxy(short x,short y){
+    COORD pos = {x,y};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+}
+
+int main()
+{
+    gotoxy(0,20);
+    cout << "*";
+    return 0;
+}

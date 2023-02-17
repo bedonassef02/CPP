@@ -1,0 +1,79 @@
+    unordered_map<string,int>car {{"Kia",2022},{"Toyota",2014}};
+
+    cout << car["Kia"] << endl;
+    car["Kia"] = 2020;  // can override
+    cout << car.at("Kia") << endl;  // error if not exist
+
+    car.insert({"Hounda",2019}); // if  u insert exist value dont override
+    cout << car["Hounda"]<<endl;
+
+    car["Aocavia"] = 2011;
+
+    auto it = car.begin();
+    for (;it!=car.end();it++){
+        cout << it->first << "\t" << it->second<<endl;
+    }
+
+=======================================================
+	- empty
+	- size
+	- max_size
+=======================================================
+	- clear
+	- insert
+	- insert_or_assign
+	- emplace
+	- emplace_hint
+	- try_emplace	// best one
+	- erase	
+	- swap
+	- extract	// change key
+	- merge
+=======================================================
+
+   unordered_map<string,int>car {{"Kia",2022},{"Hounda",2015}
+            ,{"BMW",2018},{"Mercides",2009}};
+
+    int n = car.bucket_count();
+
+    for (int i=0;i<n;i++){
+        cout << "Bucket #"<<i << " Cotains : ";
+        for (auto it = car.begin(i);it!=car.end(i);it++){
+            cout << "[" << it->first << " : " << it->second << "]";
+        }cout << endl;
+    }
+
+=======================================================
+
+    unordered_map<string,int>car {{"Kia",2022},{"Hounda",2015}
+            ,{"BMW",2018},{"Mercides",2009}};
+
+    cout << car.max_load_factor() << endl;  // 1
+    cout << car.load_factor()<<endl;
+
+    cout << car.bucket_count()<<endl;
+    car.rehash(100);
+    cout << car.bucket_count()<<endl;
+
+=======================================================
+    unordered_map<string,int>car {{"Kia",2022},{"Hounda",2015}
+            ,{"BMW",2018},{"Mercides",2009}};
+
+    auto search = car.find("Kia");
+    if (search != car.end()){
+        cout << "Found";
+    }else{
+        cout << "Not Found";
+    }
+=======================================================
+			unordered_multimap
+=======================================================
+    unordered_multimap<string,int>car;
+
+    car.insert({"Kia",2020});
+    car.insert({"Kia",2015});
+
+    auto it = car.begin();
+    for (;it!=car.end();it++){
+        cout << it->first << "\t" << it->second<<endl;
+    }

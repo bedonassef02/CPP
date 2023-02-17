@@ -1,0 +1,13 @@
+    queue <int> q;
+    // queue <int,list<int>> q;
+    // queue <int,deque<int>> q;
+    q.push(1);
+    q.push(2);
+    q.push(3);
+    q.emplace(4);
+    while(!q.empty()){
+        cout << q.front() << "\t";
+        q.pop();
+    }
+
+    cout << q.back();

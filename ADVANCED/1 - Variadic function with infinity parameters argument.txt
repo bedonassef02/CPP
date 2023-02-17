@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+void printtNumbers(int count,...){
+    va_list countPtr;   // var list
+    va_start(countPtr,count);
+    
+    for (int i=0;i<count;i++){
+            printf("%d ",va_arg(countPtr,int));
+    }
+    
+    va_end(countPtr);
+}
+int main()
+{
+    printtNumbers(5,7,9,6,5,2);
+
+    return 0;
+}
+
+===================================
+void printtNumbers2(int count,...){
+    char str[1000];
+    va_list countPtr;   // var list
+    va_start(countPtr,count);
+    int i;
+    for (i=0;i<count*3;i+=3){
+        str[i] = '%';
+        str[i+1] = 'd';
+        str[i+2] = '\t';
+    }
+    str[i] = '\n';
+    str[i+1] = '\0';
+    vprintf(str,countPtr);
+
+    va_end(countPtr);
+}
+===================================
+void myPrintF(char *format,...){
+    va_list argPtr;
+    va_start(argPtr,format);
+    vprintf(format,argPtr);
+    va_end(argPtr);
+}
+int main()
+{
+    myPrintF("%d,%s ,%f\n",5,"Bedo",3.14);
+
+    return 0;
+}
+===================================

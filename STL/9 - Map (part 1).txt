@@ -1,0 +1,157 @@
+
+    map<string,int> id;
+    id["AAA"] = 1536;
+    id["CCC"] = 1537;
+    id["KKK"] = 1538;
+    id["BBB"] = 1537;
+    id["EEE"] = 1537;
+
+    for (auto m:id){
+        cout << "name : "<< m.first << ", id : " << m.second<<endl;
+    }
+
+    cout << "------------------------\n";
+
+    map<string,int>::iterator it = id.begin();
+    for (;it!=id.end();it++){
+        cout << "name : "<< it->first << ", id : " << it->second<<endl;
+    }
+
+    cout << "------------------------\n";
+
+    auto i = id.rbegin();
+    for (;i!=id.rend();i++){
+        cout << "name : "<< i->first << ", id : " << i->second<<endl;
+    }
+
+    cout << "------------------------\n";
+
+    cout << id.count("bedo")<<endl; // 0
+    cout << id.count("AAA")<<endl;  // 1
+    
+
+===============================================
+
+    map <char,int> m;
+    m.insert(pair<char,int>('A',2002));
+    m.insert({'E',1994});
+
+    cout << m['A'] << endl;
+    cout << m['E'] << endl;
+
+    auto it = m.begin();
+
+    it = m.insert(it,{'K',1996});   // to reduce time to insert
+    cout << m['K'] << endl;
+
+    map<char,int>m2;
+    m2.insert(m.begin(),m.find('K'));   // not inclue k 
+
+    for (auto m : m2){
+        cout << m.first << " => " << m.second << endl;
+    }
+===============================================
+	     USING OF emplace_hint()
+===============================================
+
+    map <char,int> m ;
+
+    auto it = m.begin();
+
+    m.emplace_hint(it,'A',2002);
+    m.emplace_hint(it,'B',1997);
+    m.emplace_hint(it,'N',2008);
+    m.emplace_hint(it,'K',1996);
+    m.emplace_hint(it,'U',1992);
+    m.emplace_hint(it,'E',1994);
+
+    auto i = m.begin();
+
+    i = next(i,2);
+
+    m.erase(i);
+
+    i = m.begin();
+
+    m.erase(i,m.find('K')); // all before K 
+
+    for (auto e : m){
+        cout << e.first << " => " << e.second << endl;
+    }
+
+
+===============================================
+		 USING OF equal_range()
+===============================================
+
+    auto i = m.equal_range('A');    // same element and element after it
+    // if A => will get A,B
+
+    cout << i.first->first << " => "<<i.first->second<<endl;
+
+    cout << i.second->first << " => "<<i.second->second<<endl;
+
+===============================================
+		 USING OF key_comp()
+===============================================
+    map <char,int> m ;
+
+    m['A'] = 1;
+    m['B'] = 2;
+    m['C'] = 3;
+    m['D'] = 4;
+    m['E'] = 5;
+    m['F'] = 6;
+
+    auto com = m.key_comp();    
+    auto it = m.begin();
+    
+    char c = 'C';   // before C
+
+    for (;com(it->first,c) ;it++){  // A B
+        cout << it->first << " => " << it->second << endl;
+    }
+
+================================================
+	upper_bound() - lower_bound()
+================================================
+
+    m['A'] = 1;
+    m['B'] = 2;
+    m['C'] = 3;
+    m['D'] = 4;
+    m['E'] = 5;
+    m['F'] = 6;
+
+    auto itLow = m.lower_bound('B');
+    auto itUpp = m.upper_bound('E');
+
+    m.erase(itLow,itUpp);   // A F
+
+================================================
+
+    map <char,int,greater<char>> m;		// from greater char to lower
+
+    cout << m.max_size() << endl;
+    cout << m.empty() << endl;
+
+    m2.swap(m);
+    
+    m.clear();
+
+================================================
+			multiset
+================================================
+    multimap <string,string> mp;    // doublicate
+
+    mp.insert({"Bedo","CS"});
+    mp.insert({"Bedo","AI"});
+
+    auto it = mp.find("Bedo");  // change 1st value
+    it->second = "IS";
+
+    for (auto mm:mp){
+        cout << mm.first << " - " << mm.second << endl;
+    }
+
+    cout << mp.count("Bedo");

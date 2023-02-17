@@ -1,0 +1,66 @@
+
+#include <iostream>
+using namespace std;
+
+typedef int dataEntry;
+
+class Array {
+private : 
+	int size;
+	int length;
+	int* items;
+public :
+	Array(int arrSize) {
+		size = arrSize;
+		length = 0;
+		items = new dataEntry[size];
+	}
+
+	void fill(int start,int end, dataEntry value) {
+		for (int i = start; i <= end; i++) {
+			items[i] = value;
+		}
+	}
+	void fill(dataEntry value) {
+		for (int i = 0; i < size; i++) {
+			items[i] = value;
+		}
+	}
+
+	void print() {
+		for (int i = 0; i < length; i++) {
+			cout << items[i] << "\t";
+		}cout << endl;
+	}
+
+	void add(dataEntry item) {
+		items[length++] = item;
+	}
+
+	int getSize() {
+		return size;
+	}
+
+	int getLength() {
+		return length;
+	}
+
+	void toString() {
+		cout << "{Array Size : " << size << ", Array Length : " << length << "}\n";
+		cout << "Array :";
+		print();
+	}
+
+};
+
+int main()
+{
+	int n;
+	cout << "Enter Size Of Array : ";
+	cin >> n;
+	Array arr(n);
+	arr.add(1);
+	arr.add(15);
+	//arr.print();
+	arr.toString();
+}

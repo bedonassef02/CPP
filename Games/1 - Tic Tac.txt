@@ -1,0 +1,157 @@
+#include <iostream>
+#include <time.h>
+#include<stdio.h>
+using namespace std;
+
+char XO[3][3] = { {'1','2','3'},{'4','5','6'},{'7','8','9'}};
+
+void print()
+{
+    for (int i=0; i<3; i++)
+    {
+        for(int j=0; j<3; j++)
+        {
+            cout << XO[i][j] << "\t";
+        }
+        cout << endl;
+    }
+}
+
+bool play(int pos,int i)
+{
+    bool isTaken = false;
+    if (pos <= 3 && XO[0][pos-1] == 'X' || XO[0][pos-1] == 'O'){
+            isTaken = true;
+    }else if(pos >= 4 && pos <= 6 && XO[1][pos-4] == 'X' || XO[1][pos-4] == 'O'){
+            isTaken = true;
+    }else if (pos >= 7 && XO[2][pos-7] == 'X' || XO[2][pos-7] == 'O'){
+        isTaken = true;
+    }
+
+    if (isTaken == true){
+            cout << "The Cell is Taken! Try Again \n";
+            return false;
+    }
+
+    if (pos <= 3)
+    {
+        if (i % 2 == 0)
+        {
+            XO[0][pos-1] = 'X';
+        }
+        else
+        {
+            XO[0][pos-1] = 'O';
+        }
+    }
+    else if (pos >= 4 && pos <= 6)
+    {
+        if (i % 2 == 0)
+        {
+            XO[1][pos-4] = 'X';
+        }
+        else
+        {
+            XO[1][pos-4] = 'O';
+        }
+    }
+    else
+    {
+        if (i % 2 == 0)
+        {
+            XO[2][pos-7] = 'X';
+        }
+        else
+        {
+            XO[2][pos-7] = 'O';
+        }
+    }
+    return true;
+}
+
+bool isInLine()
+{
+    for (int i=0; i<3; i++)
+    {
+        if (XO[i][0] == XO[i][1] && XO[i][1] == XO[i][2] )
+        {
+            return true;
+        }
+        if (XO[0][i] == XO[1][i] && XO[0][i] == XO[2][i])
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool isR()
+{
+    if (XO[1][1] == XO[0][2] && XO[1][1] == XO[2][0])
+    {
+        return true;
+    }
+    if (XO[1][1] == XO[0][0] && XO[1][1] == XO[2][2])
+    {
+        return true;
+    }
+    return false;
+}
+
+bool check()
+{
+    if (isInLine()==true)
+    {
+        cout << "In Line \n";
+        return true;
+    }
+    else if (isR()==true)
+    {
+        cout << "R \n";
+        return true;
+    }
+    return false;
+}
+
+void Winner(int i)
+{
+    system("cls");
+    print();
+    cout << "Good Gob ";
+    if (i % 2 == 0)
+    {
+        cout << "X ";
+    }
+    else
+    {
+        cout << "O ";
+    }
+    cout << "is The Winner\n";
+}
+
+void wait(){
+    for (int i=0;i<100000;i++){
+        for (int j=0;j<2000;j++);
+    }
+}
+int main()
+{
+    int pos;
+    for (int i=0; i<9; i++)
+    {
+        system("cls");
+        print();
+        cin >> pos;
+        if(play(pos,i)==false){
+            i--;
+        }
+        if (check()==true)
+        {
+            Winner(i);
+            return 0;
+        }
+         wait();
+    }
+    cout << "Draw !" << endl;
+    return 0;
+}

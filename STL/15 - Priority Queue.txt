@@ -1,0 +1,31 @@
+
+struct com{
+    bool operator()(int l,int r){
+        return (l>=50) < (r>=50);
+    }
+};
+
+int main()
+{
+    //priority_queue<int,vector<int>,less<int>> pq;
+    //priority_queue<int,list<int>> pq;
+    //priority_queue<int,deque<int>> pq;
+    //priority_queue<int,vector<int>> pq; => default
+
+    priority_queue<int,vector<int>,com> pq;
+    pq.push(50);
+    pq.push(80);
+    pq.push(20);
+
+    cout << pq.top() << endl;   // 80
+    pq.pop();
+    cout << pq.top() << endl;   // 50
+
+    pq.emplace(80);
+
+    while(!pq.empty()){
+        cout << pq.top() << "\t";
+        pq.pop();
+    }
+
+

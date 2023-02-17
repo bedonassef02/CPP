@@ -1,0 +1,57 @@
+    unordered_set<string> us({"SUN","MON","TUE","WED","THU","FRI","SAT"});
+
+    for (auto s : us){
+        cout << s << " in pucket #"<<us.bucket(s) << endl;
+    }
+
+    cout << "number of pukcets : " << us.bucket_count()<< endl;
+
+
+========================================
+    unordered_set<string> us({"SUN","MON","TUE","WED","THU","FRI","SAT"});
+    unordered_set<string>::iterator it ;
+
+    int c = us.bucket_count();
+
+    for (int i=0;i<c;i++){
+        cout << "size of pucket #"<<us.bucket_size(i) << endl;
+    }
+
+    cout << us.size()<< endl;
+    cout << us.bucket_count()<<endl;
+    cout << us.load_factor()<< endl;   // (size / bucket_count)
+    cout << us.max_load_factor()<< endl;
+    cout << us.max_bucket_count() << endl;
+========================================
+    unordered_set<string> us({"SUN","MON","TUE","WED","THU","FRI","SAT"});
+
+    us.insert({"AAA"});
+    us.insert({"BBB"});
+
+    string s[] = {"Bedo","Mahmoud","Ali","Nassef"};
+    us.insert(s,s+4);
+    auto it = us.begin();
+    us.emplace_hint(it,"XXXX");
+
+    us.erase(us.begin());
+    us.erase("XXXX");
+    us.erase(us.find("WED"),us.end()); // range
+
+    for (auto m : us){
+        cout << m << "\t";
+    }
+========================================
+empty
+clear
+count
+reverse
+swap
+========================================
+
+    unordered_set<string> us({"SUN","MON","TUE","WED","THU","FRI","SAT"});
+    unordered_multiset<string> mus({"SUN","SUN","SUN","SUN","SUN","SUN","SUN"});
+
+    cout << us.bucket_count()<<endl;
+    us.rehash(100);  // greate then bucket count
+
+    cout << us.bucket_count();

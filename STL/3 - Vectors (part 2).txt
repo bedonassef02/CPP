@@ -1,0 +1,85 @@
+    vector<int> v = {1,2,3,4,5};
+    int n;
+
+    for (int i:v)
+        cout << i <<"\t";
+    cout <<endl;
+    v.resize(3+5);
+    v[5] = 6;
+    v[6] = 7;
+    v[7] = 8;
+    for (int i:v)
+        cout << i <<"\t";
+
+======================================
+
+    vector<int> v = {1,8,7,6,4,19,47,15,16,14,18,8,15};
+
+    sort(v.begin(),v.end());    // asc
+
+    for (auto i:v)
+        cout << i << "\t";
+
+    sort(v.end(),v.begin());    // desc
+
+    reverse(v.begin(),v.end()); // revese
+
+
+    cout << "min : "<<*min_element(v.begin(),v.end())<<endl;    // * because it return address &
+
+======================================
+
+vector<int> v = { 8,7,6,4,19,47,15,16,0,14,18,8,15};
+
+    cout << *max_element(v.begin(),v.end())<<endl;
+
+    auto pair = minmax_element(v.begin(),v.end());  // get min & max
+    cout << *pair.first<<endl;
+    cout << *pair.second<<endl;
+    auto it = min_element(v.begin(),v.end());
+    sort(v.begin(),it); // sort all elemnts before min element
+
+======================================
+
+    vector<int> v = { 8,7,6,4,19,47,15,16,0,14,18,8,15};
+    sort(v.begin(),v.end());
+    auto it = find_if(v.begin(),v.end(),greaterThenThree);  // get all elements greater than 15
+    // vector must be sorted
+    for (;it != v.end();it++){
+        cout << *it<<endl;
+    }
+
+======================================
+
+    int arr[] = {10,20,30,40,50,60,70};
+    vector<int> v(7);
+
+    copy(arr,arr+7,v.begin());  // copy array to vector
+
+======================================
+
+    vector<int> from_vector {10,20,30,40,50,60,70};
+    vector<int> to_vector(10);
+
+    copy_backward(from_vector.begin(),from_vector.end(),to_vector.end());
+
+    // 0       0       0       10      20      30      40      50      60      70
+   
+======================================
+
+#include <iterator>
+
+int main()
+{
+    vector<int> v {10,20,30,40,50,60,70};
+
+    copy(v.begin(),v.end(),ostream_iterator<int>(cout," "));    // print without loop
+
+    int arr[] = {10,20,30,40,50,60,70};
+
+    copy(arr,arr+7,ostream_iterator<int>(cout," "));    // print without loop
+    return 0;
+}
+
+======================================
+

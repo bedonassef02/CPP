@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector <int> v(4);
+    v[0] = 1;
+    v.push_back(5); // push in v[4]
+
+
+    vector<int>v2(v); // copy v to v2
+
+    vector <int> v3 (5,7);  // make vector with size 5 and default value is 7
+
+    v3.swap(v); // swap two vectors
+
+    v.front();  // return fist value
+
+    v.at(1);    // at make a exception out of range v[400] no
+
+    vector <int> s(100);
+    cout << s.size()<<endl;   // get size   100
+    cout << s.capacity()<<endl;     // 100
+
+    s.push_back(2);
+
+    cout << s.size()<<endl;   // 101
+    cout << s.capacity()<<endl;     // 200
+    cout << s.max_size()<<endl;
+    cout << s.empty()<<endl;
+    
+    s.pop_back();   // delete last element
+    
+    return 0;
+}

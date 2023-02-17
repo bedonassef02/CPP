@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+typedef int dataEntry;
+
+class Stack {
+private :
+		int size = 0;
+		int *stack;
+
+public :
+	Stack(int s) {
+		stack = new int[s];
+	}
+
+	void push(dataEntry item) {
+		stack[size++] = item;
+	}
+
+	dataEntry peek() {
+		return stack[size-1];
+	}
+
+	bool isEmpty() {
+		return !size;
+	}
+
+	dataEntry pop() {
+		return stack[--size];
+	}
+
+	void print() {
+		for (int i = 0; i < size; i++) {
+			cout << stack[i] << "\t";
+		}
+	}
+
+	int size() {
+		return size;
+	}
+};
+
+int main()
+{
+	int n = 10;
+	Stack stack(n);
+	stack.push(5);
+	stack.push(10);
+	stack.push(15);
+	stack.pop();
+	stack.print();
+}

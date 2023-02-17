@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    printf("%s\n",__DATE__);
+
+    printf("%s\n",__TIME__);    // time in compile don't change after that
+
+    printf("%d\n",__LINE__);    // line in code
+
+    printf("%s\n",__FILE__);    // full path
+
+    return 0;
+}

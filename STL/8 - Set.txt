@@ -1,0 +1,75 @@
+	you can't update value
+==================================
+
+    set<string> s;
+
+    auto it = s.begin();
+    it = s.emplace_hint(it,"bedo");  // O(1)
+    it = s.emplace_hint(it,"khalid"); // O(1)
+    it = s.emplace_hint(it,"moon"); // O(1)
+    it = s.emplace_hint(it,"noura"); // O(1)
+    it = s.emplace_hint(it,"beso"); // O(1)
+
+    auto i = s.emplace("usama");
+    cout << i.second << endl;   // retutn bool => mean unique value not exist before
+
+    s.erase("bedo");    // remove
+
+==================================
+
+    set<int> s = {10,20,30,40,50,60,70,80};
+
+    auto it = s.find(30);
+    s.erase(it,s.end()); // delete 30 : 80
+
+==================================
+
+    set<int> s = {10,20,30,40,50,60,70,80};
+
+    auto itlow = s.lower_bound(30);
+    auto itupper = s.upper_bound(60);
+
+    s.erase(itlow,itupper); // remove range
+
+==================================
+
+    set<int> s = {10,20,30,40,50,60,70,80};
+
+
+    auto com = s.key_comp();
+    auto it = s.begin();
+    int c = 50;
+
+    for (;com(*it,c);it++){ // print element before 50 stop if get 50
+        cout << *it << "\t";
+    }
+
+    cout << s.count(40)<<endl;  // count => if element is exist return 1 : 0
+    cout << s.count(400)<<endl;
+
+==================================
+
+    set<int> s = {10,20,30,40,50,60,70,80};
+
+    auto it = s.equal_range(40);
+
+    cout << *it.first<<endl;  // first 40
+    cout << *it.second<<endl;   // second 50
+
+==================================
+
+    set<int,greater<int>> s = {10,20,30,40,50,60,70,80};    // greater to lower
+
+==================================
+
+    multiset<int> s = {10,10,20,20,30,40,50,60,10,70,80};    // accept same 2 values
+
+    cout << s.count(10) << endl;  // how times is exist
+
+    auto it = s.begin();
+
+    for (;it!=s.end();it++){
+        cout << *it << "\t";
+    }
+
+    
